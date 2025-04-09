@@ -10,6 +10,9 @@
 
 #include <HID-Project.h> // Include the HID-Project library
 
+
+
+
 void setup() {
     // Initialize the button pin
     pinMode(2, INPUT_PULLUP); // Button 1 connected to pin D2
@@ -19,12 +22,14 @@ void setup() {
     pinMode(6, INPUT_PULLUP); // Button 5 connected to pin D6
     pinMode(7, INPUT_PULLUP); // Toggle sw1 connected to pin D7
     pinMode(8, INPUT_PULLUP); // Toggle sw2 connected to pin D8
-    //pinMode(9, INPUT_PULLUP); // RotEnc Pin A  connected to pin D9
-    //pinMode(10, INPUT_PULLUP); // RotEnc Pin B  connected to pin D10
-    //pinMode(11, INPUT_PULLUP); // RotEnc Button  connected to pin D11
+    
 
     // Start USB communication
     Serial.begin(9600);
+
+    //keyboard start rot enc
+    Keyboard.begin();
+
 
     // Start the Gamepad
     Gamepad.begin();
@@ -70,7 +75,6 @@ void loop() {
         Gamepad.release(6); // Release button 6
     }
 
-    // TO DO - TOGGLE SW - Setup like 2 buttons 
     // Toggle SW1 TEST
     if (digitalRead(8) == LOW) { // Button pressed
         Gamepad.press(7); // Press Toggle sw1
@@ -84,11 +88,11 @@ void loop() {
         Gamepad.release(8); // Release Toggle sw2
     }
 
-
-
     // Send the gamepad state
     Gamepad.write();
 
     delay(10); // Small delay for stability
 }
+
+
 
