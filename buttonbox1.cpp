@@ -16,6 +16,12 @@ void setup() {
     pinMode(3, INPUT_PULLUP); // Button 2 connected to pin D3
     pinMode(4, INPUT_PULLUP); // Button 3 connected to pin D4
     pinMode(5, INPUT_PULLUP); // Button 4 connected to pin D5
+    pinMode(6, INPUT_PULLUP); // Button 5 connected to pin D6
+    pinMode(7, INPUT_PULLUP); // Toggle sw1 connected to pin D7
+    pinMode(8, INPUT_PULLUP); // Toggle sw2 connected to pin D8
+    //pinMode(9, INPUT_PULLUP); // RotEnc Pin A  connected to pin D9
+    //pinMode(10, INPUT_PULLUP); // RotEnc Pin B  connected to pin D10
+    //pinMode(11, INPUT_PULLUP); // RotEnc Button  connected to pin D11
 
     // Start USB communication
     Serial.begin(9600);
@@ -65,8 +71,18 @@ void loop() {
     }
 
     // TO DO - TOGGLE SW - Setup like 2 buttons 
-
-
+    // Toggle SW1 TEST
+    if (digitalRead(8) == LOW) { // Button pressed
+        Gamepad.press(7); // Press Toggle sw1
+    } else { // Button released
+        Gamepad.release(7); // Release Toggle sw1
+    }
+    // Toggle SW2 TEST
+    if (digitalRead(9) == LOW) { // Button pressed
+        Gamepad.press(8); // Press Toggle sw2
+    } else { // Button released
+        Gamepad.release(8); // Release Toggle sw2
+    }
 
 
 
@@ -75,3 +91,4 @@ void loop() {
 
     delay(10); // Small delay for stability
 }
+
